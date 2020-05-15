@@ -1,0 +1,65 @@
+﻿@model HappyPaws.Models.Toys
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Toy Details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal" style="font-size:18px;">
+        @{
+            String name = "";
+
+        }
+        @{ name = Html.FormatValue(Model.Name, name) + ".png";}
+
+        <p>
+            <a><img src="~/Content/Images/@name"/></a>
+        </p>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            $@Html.DisplayFor(model => model.Price).00
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Stars)
+        </dt>
+
+        <dd>
+
+            @{
+                String Stars = "";
+
+            }
+            @*@Html.DisplayFor(model => model.Stars)*@
+            @{ Stars = Html.FormatValue(Model.Stars, Stars);}
+            @{int s = Int32.Parse(Stars);
+
+                for (int i = 0; i < s; i++)
+                {
+                    <a><img height="20px" width="20px" src="~/Content/Images/star.jpg" /></a>
+                }
+            }
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Add", "Create", "Toys") |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
